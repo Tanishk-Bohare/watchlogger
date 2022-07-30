@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WatchLog</title>
+  </head>
+
+  <body>
+    <!-- CSS only -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- <p id="1"></p>
+    <p id="2"></p>
+    <p id="3"></p>
+    <p id="4"></p>
+    <p id="5"></p>
+    <p id="6"></p>
+    <p id="7"></p>
+    <p id="8"></p>
+    <p id="9"></p>
+    <p id="10"></p> -->
+    
+    <!-- Image and text -->
+
+    <div >
+      <div style="margin: 0%;">
+        <nav class="navbar navbar-light" style="background-color: grey;">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <small  ><p style="margin: 0 auto;" ><strong> Watch Logger!</strong></p></small>
+            </a>
+          </div>
+        </nav>
+      </div>
+  
+      <div style="margin: 1% auto; width: 85%;" >
+        <h5>Description:</h5>
+        <p >I developed a log watching solution similar to the "tail -f" UNIX command. Nonetheless, the file is here on a remote machine. 
+          The project is thus designed like the following: </p>
+          <div style="margin: 1% auto; width: 90%;">
+            <p>
+              1. A server side program which monitors the given file and streams its updates. It runs on the same machine as the log file and it uses WebSockets to be able to push the file updates to the client(s).
+            </p>
+            <p>
+              2. A web-based client that prints the updates of the file as they happen. Only the last 10 lines in the file are displayed when the page is loaded.
+            </p>
+    
+          </div>
+      </div>
+  
+      <div class="logs" style=" width: 80%; margin:0 auto; "  >
+        <p> <strong> Last few logs: </strong> </p>
+        <ul class="list-group" >
+          <li class="list-group-item list-group-item-secondary" id="1"></li>
+          <li class="list-group-item list-group-item-secondary" id="2"></li>
+          <li class="list-group-item list-group-item-secondary" id="3"></li>
+          <li class="list-group-item list-group-item-secondary" id="4"></li>
+          <li class="list-group-item list-group-item-secondary" id="5"></li>
+          <li class="list-group-item list-group-item-secondary" id="6"></li>
+          <li class="list-group-item list-group-item-secondary" id="7"></li>
+          <li class="list-group-item list-group-item-secondary" id="8"></li>
+          <li class="list-group-item list-group-item-secondary" id="9"></li>
+          <li class="list-group-item list-group-item-secondary" id="10"></li>
+        </ul>
+      </div>
+
+      <footer class="bg-light text-center text-lg-start" style="margin-top: 1%;">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright: Tanishk Bohare
+          <p>
+            Developed by Tanishk Bohare
+          </p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+  
+    </div>
+    
+
+    <!-- <button id="refresh">Refresh</button> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var p1 = document.getElementById('1');  
+        var p2 = document.getElementById('2');  
+        var p3 = document.getElementById('3');  
+        var p4 = document.getElementById('4');  
+        var p5 = document.getElementById('5');  
+        var p6 = document.getElementById('6');  
+        var p7 = document.getElementById('7');  
+        var p8 = document.getElementById('8');  
+        var p9 = document.getElementById('9');  
+        var p10 = document.getElementById('10');  
+
+        socket.on('newlog', (msg) => {
+          p10.innerText = msg[0]
+          p9.innerText = msg[1]
+          p8.innerText = msg[2]
+          p7.innerText = msg[3]
+          p6.innerText = msg[4]
+          p5.innerText = msg[5]
+          p4.innerText = msg[6]
+          p3.innerText = msg[7]
+          p2.innerText = msg[8]
+          p1.innerText = msg[9]
+            // window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        
+    </script>
+  </body>
+</html>
