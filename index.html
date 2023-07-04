@@ -45,7 +45,13 @@
             </p>
     
           </div>
+          <div>
+            Try hitting our inbuilt service by clicking following buttons which are connected to another server or you can use the URL as well.
+            <button onclick="hithome()">Home</button> <button onclick="hitcount()">Count</button>
+          </div>
+    
       </div>
+
   
       <div class="logs" style=" width: 80%; margin:0 auto; "  >
         <p> <strong> Last few logs: </strong> </p>
@@ -106,7 +112,30 @@
             // window.scrollTo(0, document.body.scrollHeight);
         });
 
-        
+        function hithome() {
+          var opts = {
+            headers: {
+              'mode':'no-cors'
+            }
+          }
+          try {
+            fetch('https://watchlogger-realserver.onrender.com/home', opts)            
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        function hitcount() {
+          var opts = {
+            headers: {
+              'mode':'cors'
+            }
+          }
+          try {
+            fetch('https://watchlogger-realserver.onrender.com/count', opts)            
+          } catch (error) {
+            console.log(error)            
+          }
+        }
     </script>
   </body>
 </html>
